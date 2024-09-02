@@ -10,13 +10,15 @@
             <!-- Informations sur le livre -->
             <div class="p-4">
                 <h2 class="text-xl font-semibold text-gray-800 mb-2">{{ book.name }}</h2>
-                <p class="text-gray-600 mb-4">{{ book.description }}</p>
+                <p class="text-gray-600 mb-4">
+                    <CroppedText :text="book.description" :length="100"></CroppedText>
+                </p>
 
                 <!-- Auteur -->
                 <p class="text-gray-700 font-semibold mb-1">Auteur : {{ book.author.Name }}</p>
 
                 <!-- Genres -->
-                <div class="flex flex-wrap gap-2 mt-2">
+                <div class="flex flex-wrap gap-2 mt-2 justify-center">
                     <span v-for="genre in book.genres" :key="genre.id"
                         class="text-sm font-medium bg-indigo-100 text-indigo-700 px-2 py-1 rounded">
                         {{ genre.Name }}
@@ -28,6 +30,7 @@
 </template>
 
 <script setup>
+import CroppedText from './CroppedText.vue';
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 
@@ -58,4 +61,8 @@ onMounted(() => {
 
 <style scoped>
 /* Aucun style personnalisé requis pour l'instant */
+
+.justify-center {
+    justify-content: center;
+}
 </style>
